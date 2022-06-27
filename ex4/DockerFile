@@ -1,0 +1,9 @@
+
+# just downloads lastest image of debian
+FROM debian:latest
+# on met à jour l'image
+RUN apt-get update && apt-get install openssh python -y
+# génère le couple clé publique / clé privé sur le serveur
+RUN ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa
+# on lance le service en tant que serveur
+RUN systemctl start sshd.service
